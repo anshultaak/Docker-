@@ -1,0 +1,87 @@
+
+docker container ls = to see running container
+docker container ls -a = all containers show
+docker image ls = image list
+docker network ls = network show
+
+Run container
+docker container run -it ubuntu /bin/bash
+docker container run -it --name MySQL -e MySQL_allow_empty_password= true mysql= e is env variable, run without password and inside
+docker container run -d ubuntu /bin/bash = take running container background
+
+docker Container run ubuntu cat /etc/os-release= run this command and docker close
+docker container rm container_id = remove docker
+
+Stop and kill ,start,inside container,rm
+docker container start container_id = start container
+docker container attach container_id = go inside container
+docker container stop container_id = stop container
+docker container kill container_id = kill the container
+docker container prune = unuse container delete
+docker image rm image_name = remove image 
+
+docker container run -d ubuntu sleep 30 = run container background
+docker container run -it ubuntu /bin/bash/= run container and inside in container
+ctrl+p+q = outside from running container
+docker container inspect container_id = deatil container
+
+Process container
+docker container top container_id = show all process in container
+
+Port
+docker container run -p -d 3600:80 linux = run container on port number
+docker container port container_name = check port number container
+
+Rename and restart container
+docker container rename container_id new_name1=rename container
+docker container restart container_id= restart container
+
+Pause and unpause
+docker container pause container_id
+docker container unpause container_id
+
+copy file 
+docker container cp test/ container_id:/tmp/ = copy file host to Container
+
+export and import
+docker container export container_id >file_name.tar = full container save on file(you can use replace > to -o)
+docker image import file_name.tar = importing image 
+
+image created
+docker container commit --author "anshul" -m "here enter message" container_id new_image_name = created image with name or message 
+
+History
+docker image history image_name = image history show
+
+DOCKERFILE
+FROM = your image name
+RUN = which command you want run for two commmany run use && 
+LABEL = it give label like (email ="anshultaak2@gmail.com")
+ENV = set environment variables (ENV NAME Anshul)
+WORKDIR /tmp = it take you work dir on opening time directly
+USER username = switch to the user
+COPY filename path_file = copy file
+ADD filename path_file = copy file and zip file open
+CMD ["python"] = take you in python shell this command one time only
+CMD["use/sbin/sshd" , "-D"]= run ssh shell take it background (-D)
+EXPOSE 22 = give port number to Container give two port number like(EXPOSE 22 80)
+ENTRYPOINT ["ls"] = when container start that run automatically
+
+docker built -t name_image
+docker run -it name_image /bin/bash/
+
+VOLUME
+docker volume ls = list of all volume
+docker volume inspect container_id = details of volume
+cd /var/lib/docker/volumes/container_id = in this file use see volume from host machine
+docker container run -itd -v volume_name:/var/lib/mysql mysql = mount volume to host file
+
+Network
+docker network ls = all list network
+docker network inspect bridge_name = details of network
+docker network create -d bridge network_name= created network
+docker container run -it --network name_netsork
+
+
+
+
