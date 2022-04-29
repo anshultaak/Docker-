@@ -1,0 +1,102 @@
+yum install docker -y
+
+docker --help
+
+service docker start  
+
+service docker status
+
+docker info
+
+docker ps = running container
+
+docker ps -a = all containers
+
+docker pull image_name 
+
+docker stop $(docker ps -a -q)= stop all running container
+
+docker rm $(docker ps -a -q)= delete all containers
+
+docker rmi -f $(docker images -q)= delete all images
+
+docker start container_name = start container
+
+docker attach container_name = go inside container
+
+docker diff  container_name = show different between start container to now
+
+docker Container inspect container_name = details Container
+
+DOCKERFILE (FROM, RUN, MAINTENANCE, COPY, ADD, EXPOSE, WORKDIR, CMD,  ENTRYPOINT, VOLUME , ENV, ARG  =       created is docker image
+
+vi Dockerfile
+
+FROM Ubuntu
+
+RUN echo "hello" > /tmp/testfile
+
+:wq(out from file)
+
+docker built -t newname_image .
+
+DOCKER VOLUME
+
+vi Dockerfile
+
+FROM ubuntu
+
+VOLUME ["/myvolume"]
+
+:wq
+
+docker built -t anshu .
+
+docker run -it --name container_1  anshu /bin/bash
+
+docker run -it --name conatiner_2 --privileged=true --volumes-from container_1 ubuntu /bin/bash = sharing volume
+
+#volume created without Dockerfile
+
+docker run -it --name container_1 -v /volume ubuntu /bin/bash
+
+docker run -it --name container_2 --privileged=true --volumes-from container_1 ubuntu /bin/bash/
+
+#docker volume with host
+
+Cat /home/ec2-user = verify this dir have
+
+docker run -it --name host host_conatiner -v /home/ec2-user:/rajput --privileged=true ubuntu /bin/bash = home/ec2-user is host home dir and /rajput is  container dir
+
+#other volume command
+
+docker volume ls = all volume show locally
+
+docker volume create volume_name = create volume
+
+docker volume rm volume_name = delete volume
+
+docker volume prune = unused volume delete
+
+docker volume inspect volume_name = volume detail
+
+docker Container inspect container_name = details Container
+
+#DOCKER PORT EXPOSE
+
+docker run -td --name techserver -p 80:80 ubuntu = set port to Container
+
+docker ps = showing all running container
+
+docker port techserver = info of techserver port
+
+docker exec -it techserver /bin/bash  = take inside container and start new process
+
+#PUSH IMAGE ON DOCKERHUB
+
+docker commit container image
+
+docker tag image   conatiner_id/new_name 
+
+docker push container_id/new_name
+
